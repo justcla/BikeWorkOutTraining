@@ -175,10 +175,6 @@ namespace Trainer
 		{
 			Miles = miles;
 			Duration = duration;
-            if (notes == null)
-            {
-                //throw new ArgumentNullException(nameof(notes));
-            }
 			Notes = notes;
 		}
 

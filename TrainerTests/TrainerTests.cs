@@ -44,6 +44,12 @@ namespace Trainer.Tests
             Assert.ThrowsException<ArgumentNullException>(() => new WorkOut(10, TimeSpan.FromMinutes(45), null));
         }
 
+        //[TestMethod]
+        //public void TestDurationRequired()
+        //{
+        //    Assert.ThrowsException<ArgumentNullException>(() => new WorkOut(10, new TimeSpan(0, 0, 0), "Workout without duration"));
+        //}
+
         [TestMethod]
         public void AddingWorkoutAddsMilesTravelled()
         {
@@ -135,13 +141,10 @@ namespace Trainer.Tests
         public void TestTweetifyNoNotes()
         {
             StubTrainer = new Trainer();
-
-            Assert.ThrowsException<ArgumentNullException>(() =>
-            {
-                StubTrainer.RegisterWorkout(10, TimeSpan.FromMinutes(30), null);
-                StubTrainer.TweetifyWorkouts();
-            });
-        }
+            StubTrainer.RegisterWorkout(10, TimeSpan.FromMinutes(30), null);
+            List<string> result = StubTrainer.TweetifyWorkouts();
+            Assert.AreEqual(1, result.Count);
+       }
 
     }
 }
