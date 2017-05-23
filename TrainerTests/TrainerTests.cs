@@ -39,9 +39,10 @@ namespace Trainer.Tests
         }
 
         [TestMethod]
-        public void TestNoWorkoutNotes()
+        public void TestWorkoutNotesRequired()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new WorkOut(10, TimeSpan.FromMinutes(45), null));
+            const string notes = null;  // Deliberately pass in Null notes. Expect an ArgumentNullException to be thrown.
+            Assert.ThrowsException<ArgumentNullException>(() => new WorkOut(10, TimeSpan.FromMinutes(45), notes));
         }
 
         //[TestMethod]
@@ -137,14 +138,14 @@ namespace Trainer.Tests
             Assert.AreEqual(true, equal);
         }
 
-        [TestMethod]
-        public void TestTweetifyNoNotes()
-        {
-            StubTrainer = new Trainer();
-            StubTrainer.RegisterWorkout(10, TimeSpan.FromMinutes(30), null);
-            List<string> result = StubTrainer.TweetifyWorkouts();
-            Assert.AreEqual(1, result.Count);
-       }
+       // [TestMethod]
+       // public void TestTweetifyNoNotes()
+       // {
+       //     StubTrainer = new Trainer();
+       //     StubTrainer.RegisterWorkout(10, TimeSpan.FromMinutes(30), "Great workout");
+       //     List<string> result = StubTrainer.TweetifyWorkouts();
+       //     Assert.AreEqual(1, result.Count);
+       //}
 
     }
 }
